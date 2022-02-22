@@ -7,10 +7,8 @@ DataVod est application web d’hébergement de vidéos qui permet aux utilisate
 
 Fonctionnalités :
  S’inscrire, se connecter, modifier son profil, liste des utilisateurs.
- Regarder, publier, modifier, supprimer des vidéos et liste de toutes les vidéos (par catégories)_.
+ Regarder, publier, modifier, supprimer des vidéos et liste de toutes les vidéos.
  Likes, dislikes, nombres de vues des vidéos.
- Vidéos favorites_
- Playlist (suggestion de vidéos similaires)\*
 
 User Story :
 En tant que utilisateur je peux :
