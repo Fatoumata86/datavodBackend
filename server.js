@@ -7,6 +7,7 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { PORT, URI } = process.env;
+const userRoutes = require("./routes/userRoutes");
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +17,8 @@ app.use(
 	})
 );
 app.use("/public", express.static(path.join(__dirname, "public")));
+
+app.use("/users", userRoutes);
 
 if (!PORT || !URI) {
 	console.log("You need to include .env file.");

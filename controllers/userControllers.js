@@ -5,7 +5,6 @@ const path = require("path");
 
 const handleSignup = (req, res) => {
 	console.log("Handle signup");
-	delete req.body.passwordConfirm;
 	const user = new User({
 		...req.body,
 	});
@@ -28,7 +27,7 @@ const handleSignup = (req, res) => {
 const handleLogin = (req, res) => {
 	console.log("Handle login");
 	User.findOne({
-		username: req.body.username,
+		userName: req.body.userName,
 	})
 		.then((user) => {
 			if (!user) {
@@ -108,5 +107,5 @@ module.exports = {
 	handleLogin,
 	getAllUsers,
 	modifyUserProfile,
-	modifyAvatar,
+	// modifyAvatar,
 };

@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
 		required: true,
 	},
 	avatar: String,
-	bio: String,
 	city: String,
 });
 
