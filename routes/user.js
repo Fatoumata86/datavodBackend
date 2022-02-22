@@ -5,7 +5,7 @@ const userControllers = require("../controllers/userControllers");
 router.post("/signup", userControllers.handleSignup);
 router.post("/login", userControllers.handleLogin);
 
-router.get("/all", userControllers.getAllProfile);
+router.get("/all", userControllers.getAllUsers);
 
 router.put("/:id", userControllers.modifyUserProfile);
 router.put("/avatar/:id", multerSingle, userControllers.modifyAvatar);
