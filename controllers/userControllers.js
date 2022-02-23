@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
 
 const handleSignup = (req, res) => {
 	console.log("Handle signup");
@@ -11,14 +11,14 @@ const handleSignup = (req, res) => {
 	user.save()
 		.then((user) => {
 			return res.status(200).json({
-				message: "User was created",
+				message: "User is created",
 				user: user,
 			});
 		})
 		.catch((err) => {
 			console.error(err);
 			return res.status(500).json({
-				message: "User was not created",
+				message: "User is not created",
 				error: err,
 			});
 		});
@@ -41,7 +41,7 @@ const handleLogin = (req, res) => {
 				});
 			}
 			return res.status(200).json({
-				message: "Utilisateur has been found",
+				message: "Utilisateur is found",
 				userId: user._id,
 			});
 		})
@@ -57,21 +57,21 @@ const handleLogin = (req, res) => {
 const getAllUsers = (req, res) => {
 	console.log("Get All Users");
 	User.find()
-		.then((Users) => {
-			if (!Users) {
+		.then((users) => {
+			if (!users) {
 				return res.status(400).json({
-					message: "Users do not exist",
+					message: "Users not found",
 				});
 			}
 			return res.status(200).json({
-				message: "Users were found",
-				Users: Users,
+				message: "Users found",
+				users: users,
 			});
 		})
 		.catch((err) => {
 			console.error(err);
 			return res.status(500).json({
-				message: "Users couldn't be found",
+				message: "Users do not exist",
 				error: err,
 			});
 		});
