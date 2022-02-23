@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const videoControllers = require("../controllers/videoControllers");
-const multerOneVideo = require("../middlewares/multer");
+const { multerOneVideo } = require("../middlewares/multer");
 
 router.post("/add", multerOneVideo, videoControllers.addOneVideo);
 router.put("/:id", videoControllers.modifyOneVideo);

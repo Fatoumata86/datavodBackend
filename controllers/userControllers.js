@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
-// const fs = require("fs");
-// const path = require("path");
+const fs = require("fs");
+const path = require("path");
 
 const handleSignup = (req, res) => {
 	console.log("Handle signup");
@@ -101,11 +101,62 @@ const modifyUserProfile = (req, res) => {
 			});
 		});
 };
+const modifyAvatar = async (req, res) => {
+	console.log("Modifying avatar");
+	try {
+		if (!req.file) {
+			const error = new Error("Please provide an image");
+			error.code = 400;
+			throw error;
+		}
+		const latestUser = await User.findOneAndUpdate(
+			{
+				_id: req.params.id,
+			},
+			{
+				$set: {
+					avatar: `/public/avatars/${req.file.filename}`,
+				},
+			},
+			{
+				new: false,
+			}
+		);
+		if (latestUser.avatar) {
+			const latestAvatar = path.join(
+				__dirname,
+				"../" + latestUser.avatar
+			);
+			fs.unlink(latestAvatar, (err) => {
+				if (err) {
+					throw err;
+				}
+				return res.status(200).json({
+					message: "Avatar modified",
+				});
+			});
+		} else {
+			res.status(200).json({
+				message: "Avatar modified",
+			});
+		}
+	} catch (err) {
+		console.error(err);
+		if (err.code === 400) {
+			return res.status(400).json(err.message);
+		}
+
+		return res.status(500).json({
+			message: "Avatar couldn't be modified",
+			error: err,
+		});
+	}
+};
 
 module.exports = {
 	handleSignup,
 	handleLogin,
 	getAllUsers,
 	modifyUserProfile,
-	// modifyAvatar,
+	modifyAvatar,
 };

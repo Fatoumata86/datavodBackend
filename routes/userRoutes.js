@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userControllers = require("../controllers/userControllers");
-const multerOneAvatar = require("../middlewares/multer");
+const { multerOneAvatar } = require("../middlewares/multer");
 
 router.post("/signup", userControllers.handleSignup);
 router.post("/login", userControllers.handleLogin);

@@ -3,14 +3,12 @@ const Video = require("../models/Video");
 
 const addOneVideo = (req, res) => {
 	console.log("Adding Video");
-	if (!req.files) {
+	if (!req.file) {
 		return res.status(400).json({
 			message: "You need to add at least one video",
 		});
 	}
-	const videosTapes = req.files.map(
-		(file) => `/public/videos/${file.filename}`
-	);
+	const videosTapes = (file) => `/public/videos/${file.filename}`;
 	const video = new Video({
 		...req.body,
 		public: videosTapes,
