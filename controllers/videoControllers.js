@@ -56,7 +56,7 @@ const modifyOneVideo = (req, res) => {
 };
 
 const getAllVideos = (req, res) => {
-	console.log("Get all videos");
+	console.log("Get All Videos");
 	Video.find()
 		.then((videos) => {
 			if (!videos) {

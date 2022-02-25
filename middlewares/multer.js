@@ -22,7 +22,7 @@ const videoStorage = multer.diskStorage({
 module.exports = {
 	multerOneAvatar: multer({
 		storage: avatarStorage,
-	}).single("image"),
+	}).single("avatar"),
 	multerOneVideo: multer({
 		storage: videoStorage,
 	}).single("video"),
